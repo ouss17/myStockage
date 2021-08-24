@@ -1,0 +1,63 @@
+//Espace utilisé par toutes les bases de données
+SELECT
+  table_schema AS NomBaseDeDonnees, 
+  ROUND(SUM( data_length + index_length ) / 1024 / 1024, 2) AS BaseDonneesMo 
+FROM information_schema.TABLES
+GROUP BY TABLE_SCHEMA
+
+//Espace utilisé par la base de données en Mo Ko et o
+SELECT 
+ CONCAT( SUM(ROUND( ( (DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 / 1024),2)), 'Mo' ) AS TailleMo,
+ CONCAT( SUM(ROUND( ( (DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 ),2)), 'Ko' ) AS TailleKo, 
+ CONCAT( SUM(ROUND( ( (DATA_LENGTH + INDEX_LENGTH - DATA_FREE) ),2)), 'o' ) AS Tailleo 
+FROM information_schema.TABLES 
+WHERE TABLE_SCHEMA = 'protecsante'
+
+//Détail des tables de la base de données
+SELECT 
+ TABLE_NAME,
+ CONCAT(ROUND(((DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 / 1024), 2), 'Mo') AS TailleMo 
+FROM information_schema.TABLES 
+WHERE TABLE_SCHEMA = 'protecsante'
+
+//Espace utilisé par la base de données en Mo
+SELECT 
+ CONCAT( SUM(ROUND( ( (DATA_LENGTH + INDEX_LENGTH - DATA_FREE) / 1024 / 1024),2)), 'Mo' ) AS TailleMo
+FROM information_schema.TABLES 
+WHERE TABLE_SCHEMA = 'protecsante'
+
+
+
+
+
+
+
+// $pda = new PDO('mysql:host=evandisfgwcms.mysql.db;dbname=evandisfgwcms', 'evandisfgwcms', '17B1f68dybU');
+
+// // Paramétrage de la liaison PHP <-> MySQL, les données sont encodées en UTF-8.
+// $pda->exec('SET NAMES UTF8');
+// $muery = $pda->prepare(
+//     "SELECT
+//   table_schema AS NomBaseDeDonnees, 
+//   ROUND(SUM( data_length + index_length ) / 1024 / 1024, 2) AS BaseDonneesMo 
+// FROM information_schema.TABLES
+// GROUP BY TABLE_SCHEMA"
+// );
+// $muery->execute();
+// $stocks = $muery->fetch(PDO::FETCH_ASSOC);
+// var_dump($stocks);
+
+
+
+
+// $link = mysqli_connect($localIP, "evandisfgwcms", "17B1f68dybU", "evandisfgwcms.mysql.db");
+
+// if (!$link) {
+//     echo "Erreur : Impossible de se connecter à MySQL." . PHP_EOL;
+//     echo "Errno de débogage : " . mysqli_connect_errno() . PHP_EOL;
+//     echo "Erreur de débogage : " . mysqli_connect_error() . PHP_EOL;
+//     exit;
+// }
+
+// echo "Succès : Une connexion correcte à MySQL a été faite! La base de donnée my_db est géniale." . PHP_EOL;
+// echo "Information d'hôte : " . mysqli_get_host_info($link) . PHP_EOL;

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <title>MyStockage</title>
+    <!-- Feuilles de style externes -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <!-- Feuilles de style de l'application -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <main id="main">
+    <h1 class="title-main">Modifier</h1>
+    <form action="modify.php" method="post">
+        <label for="name">Nom du site</label>
+        <input type="text" name="name" id="name" value="<?= $site["Site_Name"] ?>">
+        <label for="url">Url du site</label>
+        <input type="text" name="url" id="url" value="<?= $site["Site_Url"] ?>">
+        <label for="bdd">Mot de passe base de données</label>
+        <input type="text" name="bdd" id="bdd" value="<?= $site["Database_Mdp"] ?>">
+        <input type="hidden" value="<?= $id ?>" name="id">
+        <!-- <label for="get">Nom du site (sans espace)</label>
+        <input type="text" name="get" id="get" value="<?= $site["name"] ?>"> -->
+        <input type="submit" name="submit" id="submit" value="Modifier">
+    </form>
+    </main>
+</body>
+
+</html>
